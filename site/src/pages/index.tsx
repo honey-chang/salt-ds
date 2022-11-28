@@ -57,7 +57,7 @@ const cards: CardProps[] = [
       "Follow our simple step-by-step process for installing the Salt packages and Figma library, whether you’re a designer or developer. It also covers theming, styling and how to add other aspects of customization to suit your needs. ",
     url: "/getting-started",
     linkText: "Browse our getting started guides",
-    keylineColor: "var(--uitk-color-purple-50)",
+    keylineColor: "var(--site-tertiary-accent-purple)",
   },
   {
     icon: <CodeIcon />,
@@ -66,7 +66,7 @@ const cards: CardProps[] = [
       "Our suite of React-based components is built accessibly from the ground up, fully customizable, usability tested and most importantly, lightweight. Find what you need to create simple forms and a license-free, fast DataGrid.",
     url: "/components",
     linkText: "Explore the component library",
-    keylineColor: "var(--uitk-color-teal-50)",
+    keylineColor: "var(--site-tertiary-accent-teal)",
   },
   {
     icon: <ArrowsIcon />,
@@ -75,7 +75,7 @@ const cards: CardProps[] = [
       "We welcome bug reports, fixes and other contributions, and would love to receive your feedback and suggestions. Use our GitHub templates to reach out to us.",
     url: "/contributing",
     linkText: "Learn more on how to contribute",
-    keylineColor: "var(--uitk-color-orange-30)",
+    keylineColor: "var(--site-tertiary-accent-orange)",
   },
 ];
 
