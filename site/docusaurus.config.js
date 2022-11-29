@@ -60,7 +60,7 @@ Salt is the next-generation version of the established JPM UI Toolkit, which has
             type: "doc",
             docId: "getting-started/index",
             position: "left",
-            label: "Getting started"
+            label: "Getting started",
           },
           {
             type: "doc",
