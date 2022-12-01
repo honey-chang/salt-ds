@@ -49,24 +49,19 @@
 }
 
 .navbar {
-  --ifm-navbar-height: 60px;
+  --ifm-navbar-height: calc(var(--uitk-size-unit) * 5);
   --ifm-navbar-background-color: var(--uitk-color-gray-900);
   --ifm-navbar-padding-vertical: var(--uitk-size-unit);
   --ifm-navbar-padding-horizontal: calc(var(--uitk-size-unit) * 3);
 }
 
 .navbar__item {
-  --ifm-navbar-item-padding-vertical: calc(var(--uitk-size-unit) * 1);
+  /* custom padding so the orange border perfectly aligns with the navbar */
+  --ifm-navbar-item-padding-vertical: calc(var(--uitk-size-unit) + 1px);
 }
 
 .navbar__logo {
-  height: 26px;
-}
-
-.navbar__logo__separator {
-  border-right: 1px solid var(--uitk-color-gray-400);
-  height: 14px;
-  margin: 0px calc(var(--uitk-size-unit) * 2);
+  height: 23px;
 }
 
 .navbar__items {
@@ -80,12 +75,15 @@
 
 .navbar__link--active {
   font-weight: var(--uitk-navigable-fontWeight-active);
-  border-bottom: 2px solid var(--uitk-navigable-indicator-active);
-  color: inherit;
+  border-bottom: 3px solid var(--uitk-navigable-indicator-active);
+  color: var(--uitk-color-white);
 }
 
 .navbar__link:hover {
-  color: inherit;
+  color: var(--uitk-color-white);
+}
+.navbar__link:not(.navbar__link--active):not(.header-github-link) {
+  color: var(--uitk-text-secondary-foreground);
 }
 
 .navbar__link:hover:not(.navbar__link--active):not(.header-github-link) {
@@ -113,7 +111,22 @@
 
 .theme-doc-sidebar-container .menu__link--active {
   font-weight: var(--uitk-navigable-fontWeight-active);
+}
+
+.theme-doc-sidebar-container li {
+  display: flex;
+  height: calc(var(--uitk-text-h4-fontSize) + 3 * var(--uitk-size-unit));
+}
+
+.menu__list-item:not(:first-child) {
+  margin: 0;
+}
+
+.theme-doc-sidebar-container li:has(> .menu__link--active)::after {
   border-left: 4px solid var(--uitk-navigable-indicator-active);
+  content: "";
+  position: relative;
+  left: -289px;
 }
 
 .theme-doc-sidebar-container .menu__link:hover {
@@ -200,6 +213,7 @@
 .docs-toc-intro {
   font-size: var(--uitk-text-h4-fontSize);
   font-weight: var(--uitk-text-h4-fontWeight);
+  margin-left: 2px;
 }
 
 .table-of-contents ul,
@@ -207,8 +221,8 @@
   list-style: none;
 }
 
-.table-of-contents li a {
-  height: var(--uitk-size-stackable);
+.table-of-contents li {
+  padding-bottom: var(--uitk-size-unit);
 }
 
 ul.table-of-contents li > ul li {
@@ -235,8 +249,8 @@ ul.table-of-contents li > ul li {
   margin-bottom: calc(var(--uitk-size-unit) * 2);
 }
 
-.docs-page-content *:has(+ h2),
-.docs-page-content *:not(h2):has(+ h3) {
+.docs-page-content > *:has(+ h2),
+.docs-page-content > *:not(h2):has(+ h3) {
   margin-bottom: calc(var(--uitk-size-unit) * 3);
 }
 
@@ -271,6 +285,50 @@ ul.table-of-contents li > ul li {
 
 .footer {
   --ifm-footer-background-color: var(--uitk-color-gray-900);
+  --ifm-footer-link-color: var(--uitk-text-secondary-foreground);
+  --footer-items-separator-height: 16px;
+}
+
+.footer__title {
+  display: none;
+}
+
+.footer .container,
+.footer__items {
+  display: flex;
+}
+
+.footer .container {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  max-width: none;
+}
+
+.footer__items {
+  gap: var(--uitk-size-unit);
+}
+
+.footer__items > *:not(:last-child):after {
+  width: var(--uitk-separable-borderWidth);
+  content: "";
+  background-color: var(--uitk-text-secondary-foreground);
+  height: var(--footer-items-separator-height);
+  align-self: center;
+}
+
+.footer__item {
+  display: contents;
+}
+
+.footer__links {
+  margin: 0;
+}
+
+.footer__col {
+  --ifm-spacing-horizontal: 0;
+  --ifm-spacing-vertical: 0;
 }
 
 .header-github-link:before {
@@ -315,6 +373,17 @@ table tr td:not(:last-child) {
   border-right: 1px solid var(--uitk-color-gray-90-fade-border-readonly);
 }
 
+@media screen and (max-width: 1280px) {
+  .navbar {
+    --ifm-navbar-height: 76px;
+  }
+
+  .navbar__item {
+    /* custom padding so the orange border perfectly aligns with the navbar */
+    --ifm-navbar-item-padding-vertical: calc(var(--uitk-size-unit) + 3px);
+  }
+}
+
 table tr th + th::before {
   content: "";
   border-left: 1px solid var(--uitk-color-gray-90-fade-border-readonly);
@@ -322,4 +391,14 @@ table tr th + th::before {
   height: 50%;
   left: calc(-1 * var(--uitk-size-unit));
   top: 25%;
+}
+
+@media screen and (max-width: 768px) {
+  .docs-toc-container {
+    display: none;
+  }
+  .docs-page-content,
+  .docs-page-content.withToc {
+    width: 100%;
+  }
 }
