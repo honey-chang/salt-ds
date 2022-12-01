@@ -8,6 +8,7 @@
   --ifm-color-primary: var(--uitk-text-primary-foreground);
   --ifm-font-family-base: var(--uitk-typography-fontFamily);
   --card-background: #10212b;
+  --image-border: #c5c9d0;
 }
 
 ::selection {
@@ -38,7 +39,7 @@
   --ifm-footer-link-hover-color: var(--uitk-text-link-foreground-hover);
   --ifm-menu-link-padding-horizontal: calc(var(--uitk-size-unit) * 2);
   --ifm-menu-link-padding-vertical: var(--uitk-size-unit);
-  --ifm-paragraph-margin-bottom:  calc(var(--uitk-size-unit) * 2);
+  --ifm-paragraph-margin-bottom: calc(var(--uitk-size-unit) * 2);
   --ifm-toc-border-color: var(--uitk-color-gray-30); /* TODO: see if we can wrap sidebar with TKProvider - use separable-tertiary-borderColor */
 }
 
@@ -162,7 +163,6 @@
   font-weight: var(--uitk-text-h3-fontWeight-small);
 }
 
-
 .docs-wrapper .pagination-nav .pagination-label {
   font-size: var(--uitk-text-h3-fontSize);
   font-weight: var(--uitk-text-h3-fontWeight);
@@ -217,11 +217,10 @@ ul.table-of-contents li > ul li {
 
 .docs-page-content {
   padding: calc(var(--uitk-size-unit) * 3);
-
 }
 
 .docs-page-content > p:first-child {
-  --ifm-paragraph-margin-bottom:  calc(var(--uitk-size-unit) * 3);
+  --ifm-paragraph-margin-bottom: calc(var(--uitk-size-unit) * 3);
 }
 
 .docs-page-content.withToc {
@@ -236,9 +235,8 @@ ul.table-of-contents li > ul li {
   margin-bottom: calc(var(--uitk-size-unit) * 2);
 }
 
-
-.docs-page-content *:has(+ h2), 
-.docs-page-content *:not(h2):has(+ h3)  {
+.docs-page-content *:has(+ h2),
+.docs-page-content *:not(h2):has(+ h3) {
   margin-bottom: calc(var(--uitk-size-unit) * 3);
 }
 
@@ -318,7 +316,7 @@ table tr td:not(:last-child) {
 }
 
 table tr th + th::before {
-  content: '';
+  content: "";
   border-left: 1px solid var(--uitk-color-gray-90-fade-border-readonly);
   position: relative;
   height: 50%;
