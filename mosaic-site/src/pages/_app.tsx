@@ -34,6 +34,7 @@ const components = {
   Homepage,
   Image,
 };
+console.log("components", components);
 
 const layoutComponents = { ...mosaicLayouts, ...saltLayouts };
 
