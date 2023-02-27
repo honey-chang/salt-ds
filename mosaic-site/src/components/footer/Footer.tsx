@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import classnames from "classnames";
 import { Link } from "@salt-ds/core";
 import styles from "./Footer.module.css";
@@ -16,7 +16,7 @@ interface FooterProps {
 
 const defaultCopyright = `© ${new Date().getFullYear()} JPMorgan Chase & Co. All rights reserved.`;
 
-export const Footer: React.FC<FooterProps> = ({
+export const Footer: FC<FooterProps> = ({
   className,
   links,
   copyright = defaultCopyright,
@@ -25,15 +25,13 @@ export const Footer: React.FC<FooterProps> = ({
     <div className={styles.container}>
       <div className={styles.links}>
         {links.map(({ label, to }) => (
-          <div key={label}>
+          <div className={styles.linkContainer} key={label}>
             <Link href={to}>{label}</Link>
           </div>
         ))}
       </div>
 
-      <div className={styles.copyright}>
-        <p>{copyright}</p>
-      </div>
+      <div className={styles.copyright}>{copyright}</div>
     </div>
   </footer>
 );
