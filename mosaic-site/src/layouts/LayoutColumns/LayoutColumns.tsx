@@ -27,13 +27,9 @@ const TriggerElement: FC<TriggerElementProps> = ({
 
 export const LayoutColumns = ({
   PrimarySidebar,
-  SecondarySidebar,
-  Footer,
   children,
 }: {
   PrimarySidebar?: ReactNode;
-  SecondarySidebar?: ReactNode;
-  Footer?: ReactNode;
   children?: ReactNode;
 }) => {
   const breakpoint = useBreakpoint();
@@ -55,11 +51,7 @@ export const LayoutColumns = ({
         <div className={styles.columnWrapper}>
           <div className={styles.contentColumn}>
             <main className={styles.contentBody}>{children}</main>
-            {Footer && Footer}
           </div>
-          {SecondarySidebar && !showDrawer ? (
-            <Sidebar sticky>{SecondarySidebar}</Sidebar>
-          ) : null}
         </div>
       </div>
     </div>
