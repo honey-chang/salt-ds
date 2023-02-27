@@ -10,7 +10,8 @@ import {
   PageNavigation,
 } from "@jpmorganchase/mosaic-site-components";
 import { Footer } from "../../components/footer";
-import { LayoutBase, LayoutColumns } from "@jpmorganchase/mosaic-layouts"; // TODO: create custom LayoutColumns component
+import { LayoutBase } from "@jpmorganchase/mosaic-layouts";
+import { LayoutColumns } from "../LayoutColumns/LayoutColumns";
 import { SaltProvider } from "@salt-ds/core";
 import { LayoutProps } from "../types/index";
 import layoutStyles from "../index.module.css";
@@ -49,7 +50,7 @@ export const DetailTechnical: FC<LayoutProps> = ({
         <LayoutColumns
           PrimarySidebar={PrimarySidebar}
           // SecondarySidebar={SecondarySidebar} TODO: add TOC inside main container
-          Footer={<Footer {...FooterProps} />}
+          // Footer={<Footer {...FooterProps} />}
         >
           <Breadcrumbs />
           <h1 className={layoutStyles.title}>{title}</h1>
@@ -61,6 +62,7 @@ export const DetailTechnical: FC<LayoutProps> = ({
           <DocPaginator />
         </LayoutColumns>
       </div>
+      <Footer {...FooterProps} />
     </LayoutBase>
   );
 };
