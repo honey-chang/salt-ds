@@ -21,7 +21,7 @@ export const Footer: FC<FooterProps> = ({
   links,
   copyright = defaultCopyright,
 }) => (
-  <footer className={classnames(styles.root, className)}>
+  <footer className={classnames(styles.footer, className)}>
     <div className={styles.container}>
       <div className={styles.links}>
         {links.map(({ label, to }) => (
