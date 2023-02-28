@@ -1,34 +1,34 @@
-import React, { useEffect, useRef, useState, ReactNode } from "react";
+import React, {
+  useState,
+  ReactNode,
+  FC,
+  ElementType,
+  PropsWithChildren,
+  HTMLProps,
+} from "react";
 import classnames from "classnames";
-// import { Icon } from "../../Icon";
-
-import { Link } from "@jpmorganchase/mosaic-site-components";
-// import { Link,  LinkProps} from "@salt-ds/core";
-// import { Caption6 } from "../../Typography";
+import { Link, LinkProps } from "@jpmorganchase/mosaic-components";
 import styles from "./AnchorHeading.module.css";
 
-export interface TypographyProps {
+interface TypographyProps {
   children: ReactNode;
   /** Additional class name for root class override */
   className?: string;
   /** Root element type */
-  component?: React.ElementType;
+  component?: ElementType;
   /** Component id */
   id?: string;
   /** role */
   role?: string;
 }
 
-export interface AnchorHeadingProps
-  extends React.HTMLProps<HTMLHeadingElement> {
-  children: React.ReactNode[];
-  Component: React.FC<React.PropsWithChildren<TypographyProps>>;
-  LinkProps?: any;
+export interface AnchorHeadingProps extends HTMLProps<HTMLHeadingElement> {
+  children: ReactNode[];
+  Component: FC<PropsWithChildren<TypographyProps>>;
+  LinkProps?: LinkProps;
 }
 
-export const AnchorHeading: React.FC<
-  React.PropsWithChildren<AnchorHeadingProps>
-> = ({
+export const AnchorHeading: FC<PropsWithChildren<AnchorHeadingProps>> = ({
   Component,
   children,
   className,
@@ -36,31 +36,13 @@ export const AnchorHeading: React.FC<
   LinkProps: LinkPropsProp = {},
   ...rest
 }) => {
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  useEffect(
-    () => () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    },
-    []
-  );
-
   const [hovered, setHovered] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const handleMouseEnter = () => {
     setHovered(true);
   };
   const handleMouseLeave = () => {
     setHovered(false);
-  };
-  const handleMouseClick = (event) => {
-    const anchor = event.currentTarget.getAttribute("href");
-    navigator.clipboard.writeText(`${window.location.origin}${anchor}`);
-    setCopied(true);
-    timerRef.current = setTimeout(() => setCopied(false), 1000);
-    event.preventDefault();
   };
 
   const { link } = LinkPropsProp;
@@ -77,32 +59,11 @@ export const AnchorHeading: React.FC<
         LinkBaseProps={{
           onMouseEnter: handleMouseEnter,
           onMouseLeave: handleMouseLeave,
-          onClick: handleMouseClick,
         }}
       >
-        <Component id={id} className={styles.root} {...rest}>
+        <Component id={id} {...rest}>
           {children}
-          <span className={styles.badgeContainer}>
-            {!copied && hovered ? (
-              <span
-                aria-label="click to copy anchor link to clipboard"
-                className={classnames(styles.badge, styles.badgeLink)}
-              >
-                {/* <Icon className={styles.badgeIcon} name="linked" /> */}
-              </span>
-            ) : null}
-            {/* {copied ? (
-              <span
-                aria-label="copied anchor link to clipboard"
-                className={classnames(styles.badge, styles.badgeCopied)}
-              >
-                <Icon className={styles.badgeIcon} name="successTick" />
-                <Caption6 className={styles.badgeLabel} component="span">
-                  Copied
-                </Caption6>
-              </span>
-            ) : null} */}
-          </span>
+          <span className={styles.badgeContainer}>{hovered ? "#" : null}</span>
         </Component>
       </Link>
     </div>

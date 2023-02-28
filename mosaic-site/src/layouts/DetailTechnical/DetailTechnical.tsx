@@ -53,8 +53,19 @@ export const DetailTechnical: FC<LayoutProps> = ({
           <h1 className={layoutStyles.title}>{title}</h1>
           <SaltProvider mode="light">
             <div className={layoutStyles.docsPageContainer}>
-              <div className={layoutStyles.docsPageContent}>{children}</div>
-              <Sidebar sticky>{SecondarySidebar}</Sidebar>
+              <div
+                className={clsx(
+                  layoutStyles.docsPageContent,
+                  styles.docsPageContent
+                )}
+              >
+                {children}
+              </div>
+              <div className={styles.sidebar}>
+                <SaltProvider density="medium">
+                  <Sidebar sticky>{SecondarySidebar}</Sidebar>
+                </SaltProvider>
+              </div>
             </div>
           </SaltProvider>
           <DocPaginator />
