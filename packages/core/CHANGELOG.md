@@ -1,5 +1,11 @@
 # @salt-ds/core
 
+## 1.2.1
+
+### Patch Changes
+
+- 8b58e28b: Fix AriaAnnouncer not removing announced text from the DOM
+
 ## 1.2.0
 
 ### Minor Changes
