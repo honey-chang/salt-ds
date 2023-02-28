@@ -8,9 +8,11 @@ import {
   Breadcrumbs,
   TableOfContents,
   PageNavigation,
+  Sidebar,
 } from "@jpmorganchase/mosaic-site-components";
 import { Footer } from "../../components/footer";
-import { LayoutBase, LayoutColumns } from "@jpmorganchase/mosaic-layouts"; // TODO: create custom LayoutColumns component
+import { LayoutBase } from "@jpmorganchase/mosaic-layouts";
+import { LayoutColumns } from "../LayoutColumns/LayoutColumns";
 import { SaltProvider } from "@salt-ds/core";
 import { LayoutProps } from "../types/index";
 import layoutStyles from "../index.module.css";
@@ -46,21 +48,19 @@ export const DetailTechnical: FC<LayoutProps> = ({
   return (
     <LayoutBase Header={Header}>
       <div className={clsx(layoutStyles.docsWrapper, styles.docsWrapper)}>
-        <LayoutColumns
-          PrimarySidebar={PrimarySidebar}
-          // SecondarySidebar={SecondarySidebar} TODO: add TOC inside main container
-          Footer={<Footer {...FooterProps} />}
-        >
+        <LayoutColumns PrimarySidebar={PrimarySidebar}>
           <Breadcrumbs />
           <h1 className={layoutStyles.title}>{title}</h1>
           <SaltProvider mode="light">
             <div className={layoutStyles.docsPageContainer}>
               <div className={layoutStyles.docsPageContent}>{children}</div>
+              <Sidebar sticky>{SecondarySidebar}</Sidebar>
             </div>
           </SaltProvider>
           <DocPaginator />
         </LayoutColumns>
       </div>
+      <Footer {...FooterProps} />
     </LayoutBase>
   );
 };
